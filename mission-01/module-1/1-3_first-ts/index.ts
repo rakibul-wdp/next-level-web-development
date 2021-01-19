@@ -1,25 +1,14 @@
-// function
-// normal function
-// arrow function
+// spread operator
+// rest operator
+// destructuring
 
-function add(num1: number, num2: number): number {
-  return num1 + num2;
-}
+const numbers: number[] = [2, 3, 5];
+const number2: number[] = [8, 9, 3, 7];
 
-add(2, 5);
+numbers.push(...number2);
 
-const sum = (x: number, y: number): number => {
-  return x + y;
+const greetFriends = (...frd: string[]) => {
+  frd.forEach((friend: string) => console.log(`hi ${friend}`));
 };
 
-// object -> function -> method
-const normalUser = {
-  name: "abul",
-  balance: 0,
-  addBalance(balance: number): string {
-    return `new balance: ${this.balance + balance}`;
-  },
-};
-
-const arr: number[] = [2, 3, 5];
-const newArr: number[] = arr.map((item: number): number => item * item);
+greetFriends("abul", "babul", "cabul", "dabul");
