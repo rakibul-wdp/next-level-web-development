@@ -1,14 +1,21 @@
-// spread operator
-// rest operator
 // destructuring
 
-const numbers: number[] = [2, 3, 5];
-const number2: number[] = [8, 9, 3, 7];
-
-numbers.push(...number2);
-
-const greetFriends = (...frd: string[]) => {
-  frd.forEach((friend: string) => console.log(`hi ${friend}`));
+const user = {
+  id: 345,
+  name: {
+    firstName: "abul",
+    middleName: "babul",
+    lastName: "cabul",
+  },
+  contactNo: "+8801580000",
+  address: "sherpur",
 };
 
-greetFriends("abul", "babul", "cabul", "dabul");
+const {
+  contactNo,
+  name: { lastName: endName },
+} = user;
+
+// array destructuring
+const numbers = [2, 3, 5, 7];
+const [, , luckyNum, ...rest] = numbers;
