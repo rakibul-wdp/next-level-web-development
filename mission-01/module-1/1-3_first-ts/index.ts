@@ -1,21 +1,34 @@
-// destructuring
+// type alias
 
-const user = {
-  id: 345,
-  name: {
-    firstName: "abul",
-    middleName: "babul",
-    lastName: "cabul",
-  },
-  contactNo: "+8801580000",
-  address: "sherpur",
+type Student = {
+  name: string;
+  age: number;
+  gender: string;
+  contactNo?: string;
+  address: string;
 };
 
-const {
-  contactNo,
-  name: { lastName: endName },
-} = user;
+const student1: Student = {
+  name: "abul",
+  age: 24,
+  gender: "male",
+  contactNo: "+8801580530",
+  address: "Uganda",
+};
 
-// array destructuring
-const numbers = [2, 3, 5, 7];
-const [, , luckyNum, ...rest] = numbers;
+const student2: Student = {
+  name: "babul",
+  age: 25,
+  gender: "male",
+  address: "Ghana",
+};
+
+type UserName = string;
+type IsAdmin = boolean;
+
+const userName: UserName = "cabul";
+const isAdmin: IsAdmin = true;
+
+type Add = (num1: number, num2: number) => number;
+
+const add: Add = (num1, num2) => num1 + num2;
