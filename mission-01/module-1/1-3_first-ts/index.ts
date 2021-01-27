@@ -1,34 +1,39 @@
-// type alias
+// union types
 
-type Student = {
-  name: string;
-  age: number;
-  gender: string;
-  contactNo?: string;
-  address: string;
+// type FrontendDeveloper = "fake developer" | "junior developer";
+// type FullStackDeveloper = "frontend developer" | "expert Developer";
+
+// type Developer = FrontendDeveloper | FullStackDeveloper;
+
+// const newDeveloper: FrontendDeveloper = "fake developer";
+
+// type User = {
+//   name: string;
+//   email?: string;
+//   gender: "male" | "female";
+//   bloodGroup: "O+" | "A+" | "AB+";
+// };
+
+// const user1: User = {
+//   name: "abul",
+//   gender: "male",
+//   bloodGroup: "O+",
+// };
+
+type FrontendDeveloper = {
+  skills: string[];
+  designation1: "Frontend Developer";
 };
 
-const student1: Student = {
-  name: "abul",
-  age: 24,
-  gender: "male",
-  contactNo: "+8801580530",
-  address: "Uganda",
+type BackendDeveloper = {
+  skills: string[];
+  designation2: "Backend Developer";
 };
 
-const student2: Student = {
-  name: "babul",
-  age: 25,
-  gender: "male",
-  address: "Ghana",
+type FullStackDeveloper = FrontendDeveloper & BackendDeveloper;
+
+const fullStackDeveloper: FullStackDeveloper = {
+  skills: ["html", "css", "js", "nodejs"],
+  designation1: "Frontend Developer",
+  designation2: "Backend Developer",
 };
-
-type UserName = string;
-type IsAdmin = boolean;
-
-const userName: UserName = "cabul";
-const isAdmin: IsAdmin = true;
-
-type Add = (num1: number, num2: number) => number;
-
-const add: Add = (num1, num2) => num1 + num2;
