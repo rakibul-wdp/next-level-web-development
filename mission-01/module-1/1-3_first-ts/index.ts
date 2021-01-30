@@ -1,39 +1,43 @@
-// union types
+// ternary operator || optional chaining || nullish coalescing operator
 
-// type FrontendDeveloper = "fake developer" | "junior developer";
-// type FullStackDeveloper = "frontend developer" | "expert Developer";
+const age: number = 18;
 
-// type Developer = FrontendDeveloper | FullStackDeveloper;
+if (age >= 18) {
+  // console.log("adult");
+} else {
+  // console.log("not adult");
+}
 
-// const newDeveloper: FrontendDeveloper = "fake developer";
+const isAdult = age >= 18 ? "adult" : "not-adult";
+// console.log({ isAdult });
 
-// type User = {
-//   name: string;
-//   email?: string;
-//   gender: "male" | "female";
-//   bloodGroup: "O+" | "A+" | "AB+";
-// };
+// nullish coalescing operator
+// null / undefined ---> decision making
 
-// const user1: User = {
-//   name: "abul",
-//   gender: "male",
-//   bloodGroup: "O+",
-// };
+const isAuthenticated = null;
 
-type FrontendDeveloper = {
-  skills: string[];
-  designation1: "Frontend Developer";
+const result1 = isAuthenticated ?? "Guest";
+// console.log({ result1 });
+
+type User = {
+  name: string;
+  address: {
+    city: string;
+    road: string;
+    presentAddress: string;
+    permanentAddress?: string;
+  };
 };
 
-type BackendDeveloper = {
-  skills: string[];
-  designation2: "Backend Developer";
+const user: User = {
+  name: "abul",
+  address: {
+    city: "Uganda",
+    road: "example road",
+    presentAddress: "example town",
+  },
 };
 
-type FullStackDeveloper = FrontendDeveloper & BackendDeveloper;
-
-const fullStackDeveloper: FullStackDeveloper = {
-  skills: ["html", "css", "js", "nodejs"],
-  designation1: "Frontend Developer",
-  designation2: "Backend Developer",
-};
+const permanentAddress =
+  user?.address?.permanentAddress ?? "No permanent address";
+console.log({ permanentAddress });
