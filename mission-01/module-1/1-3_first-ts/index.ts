@@ -1,43 +1,36 @@
-// ternary operator || optional chaining || nullish coalescing operator
+// nullable types / unknown types
 
-const age: number = 18;
+const searchName = (value: string | null) => {
+  if (value) {
+    console.log("searching");
+  } else {
+    console.log("nothing to search");
+  }
+};
 
-if (age >= 18) {
-  // console.log("adult");
-} else {
-  // console.log("not adult");
+searchName(null);
+
+// unknown typeof
+
+const getSpeedInMeterPerSecond = (value: unknown) => {
+  if (typeof value === "number") {
+    const convertedSpeed = (value * 1000) / 3600;
+    console.log(convertedSpeed);
+  } else if (typeof value === "string") {
+    const [speed, unit] = value.split(" ");
+    const convertedSpeed = (parseFloat(speed) * 1000) / 3600;
+    console.log(convertedSpeed);
+  } else {
+    console.log("wrong input");
+  }
+};
+
+getSpeedInMeterPerSecond(null);
+
+// never
+
+function throwError(msg: string): never {
+  throw new Error(msg);
 }
 
-const isAdult = age >= 18 ? "adult" : "not-adult";
-// console.log({ isAdult });
-
-// nullish coalescing operator
-// null / undefined ---> decision making
-
-const isAuthenticated = null;
-
-const result1 = isAuthenticated ?? "Guest";
-// console.log({ result1 });
-
-type User = {
-  name: string;
-  address: {
-    city: string;
-    road: string;
-    presentAddress: string;
-    permanentAddress?: string;
-  };
-};
-
-const user: User = {
-  name: "abul",
-  address: {
-    city: "Uganda",
-    road: "example road",
-    presentAddress: "example town",
-  },
-};
-
-const permanentAddress =
-  user?.address?.permanentAddress ?? "No permanent address";
-console.log({ permanentAddress });
+throwError("error happen");
