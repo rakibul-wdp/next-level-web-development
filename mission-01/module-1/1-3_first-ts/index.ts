@@ -1,30 +1,43 @@
-// type assertion
+// interface
 
-let anything: any;
-
-anything = "abul";
-anything = 222;
-
-anything as number;
-
-const kgToGm = (value: string | number): string | number | undefined => {
-  if (typeof value === "string") {
-    const convertedValue = parseFloat(value) * 1000;
-    return convertedValue;
-  }
-  if (typeof value === "number") {
-    return value * 1000;
-  }
+type User1 = {
+  name: string;
+  age: number;
 };
 
-const result1 = kgToGm(1000) as number;
-const result2 = kgToGm("1000") as string;
-
-type CustomError = {
-  message: string;
-};
-
-try {
-} catch (error) {
-  console.log((error as CustomError).message);
+interface User2 {
+  name: string;
+  age: number;
 }
+
+type UserWithRole1 = User1 & { role: string };
+
+interface UserWithRole2 extends User1 {
+  role: string;
+}
+
+const user1: UserWithRole2 = {
+  name: "abul",
+  age: 25,
+  role: "developer",
+};
+
+type RollNumber = number;
+
+// js -> object, array -> object, function -> object
+
+type Roll1 = number[];
+
+interface Roll2 {
+  [index: number]: number;
+}
+
+const rollNumber1: Roll2 = [2, 3, 5, 7];
+
+type Add1 = (num1: number, num2: number) => number;
+
+interface Add2 {
+  (num1: number, num2: number): number;
+}
+
+const add: Add2 = (num1, num2) => num1 + num2;
