@@ -1,43 +1,32 @@
-// interface
+// generic type
 
-type User1 = {
-  name: string;
-  age: number;
-};
+type GenericArray<T> = Array<T>;
 
-interface User2 {
-  name: string;
-  age: number;
-}
+const rollNumbers: GenericArray<number> = [2, 3, 5];
+const mentors: GenericArray<string> = ["x", "y", "z"];
+const boolArray: GenericArray<boolean> = [true, false, true];
 
-type UserWithRole1 = User1 & { role: string };
+const user: GenericArray<{ name: string; age: number }> = [
+  {
+    name: "abul",
+    age: 25,
+  },
+  {
+    name: "babul",
+    age: 24,
+  },
+];
 
-interface UserWithRole2 extends User1 {
-  role: string;
-}
+// generic tuple
 
-const user1: UserWithRole2 = {
-  name: "abul",
-  age: 25,
-  role: "developer",
-};
+type GenericTuple<X, Y> = [X, Y];
 
-type RollNumber = number;
+const human: GenericTuple<string, string> = ["x", "y"];
 
-// js -> object, array -> object, function -> object
-
-type Roll1 = number[];
-
-interface Roll2 {
-  [index: number]: number;
-}
-
-const rollNumber1: Roll2 = [2, 3, 5, 7];
-
-type Add1 = (num1: number, num2: number) => number;
-
-interface Add2 {
-  (num1: number, num2: number): number;
-}
-
-const add: Add2 = (num1, num2) => num1 + num2;
+const userWithId: GenericTuple<number, { name: string; email: string }> = [
+  123,
+  {
+    name: "abul",
+    email: "abul@gmail.com",
+  },
+];
