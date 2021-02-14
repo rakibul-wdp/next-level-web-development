@@ -1,32 +1,63 @@
-// generic type
+// interface - generic
 
-type GenericArray<T> = Array<T>;
+interface Developer<T, X = null> {
+  name: string;
+  computer: {
+    cpu: string;
+    motherboard: string;
+    ram: number;
+  };
+  smartWatch: T;
+  bike?: X;
+}
 
-const rollNumbers: GenericArray<number> = [2, 3, 5];
-const mentors: GenericArray<string> = ["x", "y", "z"];
-const boolArray: GenericArray<boolean> = [true, false, true];
+interface PoorDevWatch {
+  brand: string;
+  model: string;
+  display: string;
+}
 
-const user: GenericArray<{ name: string; age: number }> = [
-  {
-    name: "abul",
-    age: 25,
+const poorDeveloper: Developer<PoorDevWatch> = {
+  name: "abul",
+  computer: {
+    cpu: "intel",
+    motherboard: "asus",
+    ram: 16,
   },
-  {
-    name: "babul",
-    age: 24,
+  smartWatch: {
+    brand: "apple",
+    model: "ap11",
+    display: "oled",
   },
-];
+};
 
-// generic tuple
+interface RichDevWatch {
+  brand: string;
+  model: string;
+  heartTrack: boolean;
+  sleepTrack: boolean;
+}
 
-type GenericTuple<X, Y> = [X, Y];
+interface RichDevBike {
+  model: string;
+  version: string;
+}
 
-const human: GenericTuple<string, string> = ["x", "y"];
-
-const userWithId: GenericTuple<number, { name: string; email: string }> = [
-  123,
-  {
-    name: "abul",
-    email: "abul@gmail.com",
+const richDeveloper: Developer<RichDevWatch, RichDevBike> = {
+  name: "abul",
+  computer: {
+    cpu: "ryzn",
+    motherboard: "asus",
+    ram: 32,
   },
-];
+  smartWatch: {
+    brand: "apple 15",
+    model: "apl15",
+    heartTrack: true,
+    sleepTrack: true,
+  },
+  bike: {
+    model: "r15",
+    version: "2024",
+  },
+};
