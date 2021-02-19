@@ -1,63 +1,48 @@
-// interface - generic
+// function with generics
 
-interface Developer<T, X = null> {
-  name: string;
-  computer: {
-    cpu: string;
-    motherboard: string;
-    ram: number;
+const createArray = (param: string): string[] => {
+  return [param];
+};
+
+const createArrayWithGeneric = <T>(param: T): T[] => {
+  return [param];
+};
+
+const res1 = createArray("bangladesh");
+const resGeneric = createArrayWithGeneric<string>("bangladesh");
+
+type User = { id: number; name: string };
+
+const resGenericObj = createArrayWithGeneric<User>({
+  id: 22,
+  name: "x",
+});
+
+const createArrayWithTuple = <T, Q>(param1: T, param2: Q): [T, Q] => {
+  return [param1, param2];
+};
+
+const res2 = createArrayWithTuple<string, number>("bd", 22);
+const res3 = createArrayWithTuple<string, { name: string }>("bd", {
+  name: "asia",
+});
+
+const addCourseToStudent = <T>(student: T) => {
+  const course = "level 2";
+
+  return {
+    ...student,
+    course,
   };
-  smartWatch: T;
-  bike?: X;
-}
-
-interface PoorDevWatch {
-  brand: string;
-  model: string;
-  display: string;
-}
-
-const poorDeveloper: Developer<PoorDevWatch> = {
-  name: "abul",
-  computer: {
-    cpu: "intel",
-    motherboard: "asus",
-    ram: 16,
-  },
-  smartWatch: {
-    brand: "apple",
-    model: "ap11",
-    display: "oled",
-  },
 };
 
-interface RichDevWatch {
-  brand: string;
-  model: string;
-  heartTrack: boolean;
-  sleepTrack: boolean;
-}
-
-interface RichDevBike {
-  model: string;
-  version: string;
-}
-
-const richDeveloper: Developer<RichDevWatch, RichDevBike> = {
-  name: "abul",
-  computer: {
-    cpu: "ryzn",
-    motherboard: "asus",
-    ram: 32,
-  },
-  smartWatch: {
-    brand: "apple 15",
-    model: "apl15",
-    heartTrack: true,
-    sleepTrack: true,
-  },
-  bike: {
-    model: "r15",
-    version: "2024",
-  },
-};
+const student1 = addCourseToStudent({
+  name: "x",
+  email: "x@gmail.com",
+  devType: "l2",
+});
+const student2 = addCourseToStudent({
+  name: "y",
+  email: "y@gmail.com",
+  devType: "l2",
+});
