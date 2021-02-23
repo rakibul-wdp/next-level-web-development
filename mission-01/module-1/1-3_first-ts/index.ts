@@ -1,33 +1,10 @@
-// function with generics
+// constraints
 
-const createArray = (param: string): string[] => {
-  return [param];
-};
-
-const createArrayWithGeneric = <T>(param: T): T[] => {
-  return [param];
-};
-
-const res1 = createArray("bangladesh");
-const resGeneric = createArrayWithGeneric<string>("bangladesh");
-
-type User = { id: number; name: string };
-
-const resGenericObj = createArrayWithGeneric<User>({
-  id: 22,
-  name: "x",
-});
-
-const createArrayWithTuple = <T, Q>(param1: T, param2: Q): [T, Q] => {
-  return [param1, param2];
-};
-
-const res2 = createArrayWithTuple<string, number>("bd", 22);
-const res3 = createArrayWithTuple<string, { name: string }>("bd", {
-  name: "asia",
-});
-
-const addCourseToStudent = <T>(student: T) => {
+const addCourseToStudent = <
+  T extends { id: number; name: string; email: string }
+>(
+  student: T
+) => {
   const course = "level 2";
 
   return {
@@ -36,12 +13,26 @@ const addCourseToStudent = <T>(student: T) => {
   };
 };
 
-const student1 = addCourseToStudent({
+const student0 = addCourseToStudent({
+  id: 44,
+  name: "z",
+  email: "z@gmail",
+  not: "not",
+});
+
+const student1 = addCourseToStudent<{
+  id: number;
+  name: string;
+  email: string;
+  devType: string;
+}>({
+  id: 23,
   name: "x",
   email: "x@gmail.com",
   devType: "l2",
 });
 const student2 = addCourseToStudent({
+  id: 33,
   name: "y",
   email: "y@gmail.com",
   devType: "l2",
