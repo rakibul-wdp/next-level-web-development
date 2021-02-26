@@ -1,42 +1,19 @@
-// promise
+// conditional type
 
-interface Todo {
-  id: number;
-  userId: number;
-  title: string;
-  completed: boolean;
-}
+type a1 = number;
+type b1 = undefined;
 
-const getTodo = async (): Promise<Todo> => {
-  const response = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+type x = a1 extends null ? true : false;
 
-  const data = await response.json();
+type y = a1 extends null ? true : b1 extends undefined ? undefined : any;
 
-  return data;
+type Sheikh = {
+  bike: string;
+  car: string;
+  ship: string;
+  plane: string;
 };
 
-getTodo();
+type CheckVehicle<T> = T extends keyof Sheikh ? true : false;
 
-interface Something {
-  something: string;
-}
-
-const createPromise = (): Promise<Something> => {
-  return new Promise<Something>((resolve, reject) => {
-    const data: Something = { something: "something" };
-
-    if (data) {
-      resolve(data);
-    } else {
-      reject("failed to load data");
-    }
-  });
-};
-
-const showData = async (): Promise<Something> => {
-  const data: Something = await createPromise();
-  return data;
-  console.log(data);
-};
-
-showData();
+type HasPlane = CheckVehicle<"plane">;
