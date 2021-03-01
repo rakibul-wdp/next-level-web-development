@@ -1,19 +1,32 @@
-// conditional type
+// mapped types
 
-type a1 = number;
-type b1 = undefined;
+const numbers: number[] = [2, 3, 5];
 
-type x = a1 extends null ? true : false;
+// const strings: string[] = ["2", "3", "5"];
 
-type y = a1 extends null ? true : b1 extends undefined ? undefined : any;
+const strings: string[] = numbers.map((number) => number.toString());
 
-type Sheikh = {
-  bike: string;
-  car: string;
-  ship: string;
-  plane: string;
+console.log(strings);
+
+interface AreaNumber {
+  height: number;
+  width: number;
+}
+
+// interface AreaString {
+//   height: string;
+//   width: string;
+// }
+
+// keyof AreaNumber => "height" | "width"
+
+type Height = AreaNumber["height"]; // look up type
+
+type AreaString<T> = {
+  [key in keyof T]: T[key];
 };
 
-type CheckVehicle<T> = T extends keyof Sheikh ? true : false;
-
-type HasPlane = CheckVehicle<"plane">;
+const area1: AreaString<{ height: string; width: number }> = {
+  height: "100",
+  width: 50,
+};
