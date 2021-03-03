@@ -1,32 +1,33 @@
-// mapped types
+// utility types
+// Pick
 
-const numbers: number[] = [2, 3, 5];
-
-// const strings: string[] = ["2", "3", "5"];
-
-const strings: string[] = numbers.map((number) => number.toString());
-
-console.log(strings);
-
-interface AreaNumber {
-  height: number;
-  width: number;
+interface Person {
+  name: string;
+  age: number;
+  email?: string;
+  contactNo: string;
 }
 
-// interface AreaString {
-//   height: string;
-//   width: string;
-// }
+type NameAge = Pick<Person, "name" | "age">;
 
-// keyof AreaNumber => "height" | "width"
+// Omit
+type ContactInfo = Omit<Person, "name" | "age">;
 
-type Height = AreaNumber["height"]; // look up type
+// Required
+type PersonRequired = Required<Person>;
 
-type AreaString<T> = {
-  [key in keyof T]: T[key];
+// Partial
+type PersonPartial = Partial<Person>;
+
+// Readonly
+type PersonReadonly = Readonly<Person>;
+
+const person1: PersonReadonly = {
+  name: "x",
+  age: 23,
+  contactNo: "293849238",
 };
 
-const area1: AreaString<{ height: string; width: number }> = {
-  height: "100",
-  width: 50,
-};
+type myObj = Record<string, number>;
+
+const EmptyObj: Record<string, unknown> = {};
