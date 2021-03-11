@@ -1,59 +1,32 @@
-// instanceof guard
+// access modifiers
 
-class Animal {
-  name: string;
-  species: string;
+class BankAccount {
+  public readonly id: number;
+  public name: string;
+  protected _balance: number;
 
-  constructor(name: string, species: string) {
+  constructor(id: number, name: string, balance: number) {
+    this.id = id;
     this.name = name;
-    this.species = species;
+    this._balance = balance;
   }
 
-  makeSound() {
-    console.log("sound");
-  }
-}
-
-class Dog extends Animal {
-  constructor(name: string, species: string) {
-    super(name, species);
+  public addDeposit(amount: number) {
+    this._balance = this._balance + amount;
   }
 
-  makeBark() {
-    console.log("barking");
+  public getBalance() {
+    return this._balance;
   }
 }
 
-class Cat extends Animal {
-  constructor(name: string, species: string) {
-    super(name, species);
-  }
-
-  makeMew() {
-    console.log("mew");
+class StudentAccount extends BankAccount {
+  test() {
+    this._balance = 0;
   }
 }
 
-// handle in smart way by using function
-
-const isDog = (animal: Animal): animal is Dog => {
-  return animal instanceof Dog;
-};
-const isCat = (animal: Animal): animal is Cat => {
-  return animal instanceof Cat;
-};
-
-const getAnimal = (animal: Animal) => {
-  if (isDog(animal)) {
-    animal.makeBark();
-  } else if (isCat(animal)) {
-    animal.makeMew();
-  } else {
-    animal.makeSound();
-  }
-};
-
-const dog = new Dog("dog", "dog");
-const cat = new Cat("cat", "cat");
-
-getAnimal(dog);
+const poorManAccount = new BankAccount(1, "x", 20);
+poorManAccount.addDeposit(30);
+const myBalance = poorManAccount.getBalance();
+console.log(myBalance);
