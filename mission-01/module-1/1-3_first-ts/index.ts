@@ -1,30 +1,19 @@
-// getter and setter
+// static
 
-class BankAccount {
-  public readonly id: number;
-  public name: string;
-  protected _balance: number;
+class Counter {
+  static count: number = 0;
 
-  constructor(id: number, name: string, balance: number) {
-    this.id = id;
-    this.name = name;
-    this._balance = balance;
+  static increment() {
+    return (Counter.count = Counter.count + 1);
   }
 
-  set deposit(amount: number) {
-    this._balance = this._balance + amount;
-  }
-
-  // getter
-  get balance() {
-    return this._balance;
+  static decrement() {
+    return (Counter.count = Counter.count - 1);
   }
 }
 
-const poorManAccount = new BankAccount(1, "x", 20);
+console.log(Counter.increment());
 
-poorManAccount.deposit = 30;
+console.log(Counter.increment());
 
-const myBalance = poorManAccount.balance;
-
-console.log(myBalance);
+console.log(Counter.increment());
