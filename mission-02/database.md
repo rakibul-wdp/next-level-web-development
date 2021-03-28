@@ -9,3 +9,24 @@ What is data?
 What is information?
 
 - Information is processed and organized data that provides meaningful context, insight, or knowledge.
+
+What is DBMS?
+
+- Database Management System
+
+Storing Data Using File System
+
+- Unstructured data, multiple formate (.txt, mp4, etc)
+- Data redundancy
+- Data inconsistency
+- No concurrency protocol
+- Security issue
+- Access complication
+
+SQL - Structured Query Language
+
+Types of Database
+
+- Relational - MySQL, PostgreSQL, SQLite, SQL Server
+- Document - MongoDB, amazon DynamoDB
+- Key value - redis
