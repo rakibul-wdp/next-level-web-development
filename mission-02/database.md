@@ -30,3 +30,12 @@ Types of Database
 - Relational - MySQL, PostgreSQL, SQLite, SQL Server
 - Document - MongoDB, amazon DynamoDB
 - Key value - redis
+
+Table/Relation
+
+- Table name: User
+- Column/Attribute
+- Constraint/Domain
+- Degree (Collection of column)
+- Rows/Tuples/Records
+- Cardinality
