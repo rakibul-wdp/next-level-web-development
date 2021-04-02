@@ -39,3 +39,21 @@ Table/Relation
 - Degree (Collection of column)
 - Rows/Tuples/Records
 - Cardinality
+
+Keys
+
+- key: A key in a relational database is a field or a combination of rields that uniquely identifies a record in a table.
+- Super key
+- Candidate key
+- Alternate key
+- Primary key
+- Composite key
+- Foreign key
+
+Super key
+
+- Attribute or set of attribute by which we can Identify each row uniquely
+- Could be a single attribute or a set of attributes
+- Could have null values in the set
+- It actually a superset
+- {u_id}, {u_id, name}, {u_id, email}, {u_id, name, email, gender, age}, {name, email}, {name, gender}
