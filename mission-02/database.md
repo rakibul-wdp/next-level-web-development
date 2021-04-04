@@ -57,3 +57,11 @@ Super key
 - Could have null values in the set
 - It actually a superset
 - {u_id}, {u_id, name}, {u_id, email}, {u_id, name, email, gender, age}, {name, email}, {name, gender}
+
+Candidate key
+
+- Super key whose proper subset is not a super key
+- Also called Minimal Super key
+- Potential Primary Key: From the candidate keys, one is chosen as the primary key. However, all candidate keys are potential choices for the primary key.
+- Super key: {u_id}, {u_id, name}, {u_id, email}, {u_id, name, email, gender, age}, {name, email}, {name, gender}
+- Candidate Key: {u_id}, {name, gender}
