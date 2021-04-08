@@ -65,3 +65,25 @@ Candidate key
 - Potential Primary Key: From the candidate keys, one is chosen as the primary key. However, all candidate keys are potential choices for the primary key.
 - Super key: {u_id}, {u_id, name}, {u_id, email}, {u_id, name, email, gender, age}, {name, email}, {name, gender}
 - Candidate Key: {u_id}, {name, gender}
+
+Primary key
+
+- From the candidate keys, one key is chosen as the primary key for the table. The primary key is a specific candidate key that is selected as the main identifier for the records in that table
+- Should be unique, not null and stable
+- Candidate Key: {u_id}, {name, gender}
+- Primary key: {u_id}
+
+Alternate key
+
+- Candidate keys which were not chosen as primary key
+- Candidate Key: {u_id}, {name, gender}
+- Primary key: {u_id}
+- Alternate key: {name, gender}
+
+Composite key
+
+- Candidate keys which were not chosen as primary key
+- Candidate Key: {u_id}, {name, gender}
+- Primary key: {u_id}
+- Alternate key: {name, gender}
+- Composite key: {name, gender}
