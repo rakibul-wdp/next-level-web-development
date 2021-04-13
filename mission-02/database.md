@@ -87,3 +87,7 @@ Composite key
 - Primary key: {u_id}
 - Alternate key: {name, gender}
 - Composite key: {name, gender}
+
+Foreign key
+
+- if another table's primary key will sit in another table for reference, than it's call foreign key.
