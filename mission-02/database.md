@@ -91,3 +91,38 @@ Composite key
 Foreign key
 
 - if another table's primary key will sit in another table for reference, than it's call foreign key.
+
+Database Design
+
+- SDLC
+  - Planing
+  - Analysis
+  - System Design
+  - Building
+  - Testing
+  - Deployment
+
+Purpose of Database design:
+
+- Structured organization for efficient data management and retrieval
+
+Techniques to design Database
+
+- Top-down
+- Hybrid Approaches
+- Bottom-up
+
+Client come with his idea!
+
+- EduHub is a website that offers many different educational courses to people all round the world. It provides a variety of technology courses in different subjects, allowing students to enroll and learn
+
+As a next level developer
+
+- Students Enrolling in Courses:
+  - Students can enroll in one or multiple courses offered on the platform.
+  - Each enrollment represents a student's participation in a specific course.
+- Courses Available for Enrollment:
+  - Courses are available for students to enroll in.
+  - Each course can have multiple students enroll.
+- Instructors taking courses
+  - Instructors could take one or more course.
