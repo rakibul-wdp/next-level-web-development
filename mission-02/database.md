@@ -123,6 +123,45 @@ As a next level developer
   - Each enrollment represents a student's participation in a specific course.
 - Courses Available for Enrollment:
   - Courses are available for students to enroll in.
-  - Each course can have multiple students enroll.
+  - Each course can have multiple students enrolled.
 - Instructors taking courses
   - Instructors could take one or more course.
+
+Entity-Relationship (ER) diagram
+
+- An Entity-Relationship (ER) diagram is a visual representation used in database design to illustrate the relationships between entities. It shows how different entities in a database relate to each other through various types of relationships like one-to-one, one-to-many or many-to-many.
+
+Top-down steps:
+
+- Step 1: Determining Entities
+- Step 2: Determining Attributes For Each Entities
+- Step 3: Relationships Among Entities
+
+Step-1: Determining Entities
+
+- Place, Person, or Thing
+- Properties or Attributes
+- Unique Identity
+- Singular Name
+- Should contain more than one instance of data
+
+- **Student**s Enrolling in Courses:
+  - Students can enroll in one or multiple courses offered on the platform.
+  - Each enrollment represents a student's participation in a specific course.
+- **Course**s Available for Enrollment:
+  - Courses are available for students to enroll in.
+  - Each course can have multiple students enrolled.
+- **Instructor**s taking courses
+  - Instructors could take one or more course.
+
+Step-2: Determining Attributes
+
+- Should be related to file entity
+- Should be atomic
+- Should have keys
+
+example
+
+- student_id, name, email, age
+- course_id, course_name, instructor_id, duration
+- instructor_id, instructor_name, gender, level
