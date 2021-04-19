@@ -165,3 +165,43 @@ example
 - student_id, name, email, age
 - course_id, course_name, instructor_id, duration
 - instructor_id, instructor_name, gender, level
+
+Step 3: Relationships Among Entities or Relationship Cardinality
+
+Relationships: Connection between entity or tables
+Ex: Instructor Teaches(relationships) Student
+
+Instructor (Entity)
+
+- <u>id</u>
+- name
+- gender
+
+Teaches (Relationship)
+
+Student (Entity)
+
+- <u>id</u>
+- name
+- dob
+
+Cardinality
+Relationship cardinality in databases specifies how many instances of one entity are associated with hoy many instances of another entity.
+
+- One-to-One (1:1):
+  Example: A person has one passport, and a passport belongs to only one person
+
+- One-to-Many (1:N):
+  Example: A university department has multiple students, but each student belong to only one department.
+
+- Many-to-One (N:1):
+  Example: Many employees work for one company, but each employee works for only one company.
+
+- Many-to-Many (N:N):
+  Example: Students enroll in multiple courses, and each course has multiple enrolled students.
+
+- Optional One-to-One (0..1:0..1):
+  Example: A person may or may not have a driver's license, and a driver's license may or may not be associated with a person
+
+- Optional One-to-Many (0..1:N):
+  Example: A department may or may not have employees, but an employee must belong to a department.
