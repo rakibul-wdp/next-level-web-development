@@ -1,6 +1,16 @@
 import { NextFunction, Request, Response } from "express";
 import { envVars } from "../config/env";
 import AppError from "../errorHelpers/AppError";
+import { StatusCodes } from "http-status-codes";
+
+const handleDuplicateError = (err: any) => {
+  const matchedArray = err.message.match(/"([^"]*)"/);
+
+  return {
+    statusCode: 400,
+    message: `${matchedArray[1]} already exists!`,
+  };
+};
 
 export const globalErrorHandler = (
   err: any,
@@ -27,10 +37,9 @@ export const globalErrorHandler = (
 
   // duplicate error
   if (err.code === 11000) {
-    console.log("Duplicate error", err.message);
-    const matchedArray = err.message.match(/"([^"]*)"/);
-    statusCode = 400;
-    message = `${matchedArray[1]} already exists!`;
+    const simplifiedError = handleDuplicateError(err);
+    statusCode = simplifiedError.statusCode;
+    message = simplifiedError.message;
   }
   // object id error / cast error
   else if (err.name === "CastError") {
