@@ -1,36 +1,30 @@
-// nullable types / unknown types
+// type assertion
 
-const searchName = (value: string | null) => {
-  if (value) {
-    console.log("searching");
-  } else {
-    console.log("nothing to search");
+let anything: any;
+
+anything = "abul";
+anything = 222;
+
+anything as number;
+
+const kgToGm = (value: string | number): string | number | undefined => {
+  if (typeof value === "string") {
+    const convertedValue = parseFloat(value) * 1000;
+    return convertedValue;
   }
-};
-
-searchName(null);
-
-// unknown typeof
-
-const getSpeedInMeterPerSecond = (value: unknown) => {
   if (typeof value === "number") {
-    const convertedSpeed = (value * 1000) / 3600;
-    console.log(convertedSpeed);
-  } else if (typeof value === "string") {
-    const [speed, unit] = value.split(" ");
-    const convertedSpeed = (parseFloat(speed) * 1000) / 3600;
-    console.log(convertedSpeed);
-  } else {
-    console.log("wrong input");
+    return value * 1000;
   }
 };
 
-getSpeedInMeterPerSecond(null);
+const result1 = kgToGm(1000) as number;
+const result2 = kgToGm("1000") as string;
 
-// never
+type CustomError = {
+  message: string;
+};
 
-function throwError(msg: string): never {
-  throw new Error(msg);
+try {
+} catch (error) {
+  console.log((error as CustomError).message);
 }
-
-throwError("error happen");
