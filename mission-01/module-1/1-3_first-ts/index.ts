@@ -1,28 +1,42 @@
-// generic constraint with keyof operator
+// promise
 
-interface Vehicle {
-  bike: string;
-  car: string;
-  ship: string;
+interface Todo {
+  id: number;
+  userId: number;
+  title: string;
+  completed: boolean;
 }
 
-type Owner = "bike" | "car" | "ship"; // manually
+const getTodo = async (): Promise<Todo> => {
+  const response = await fetch("https://jsonplaceholder.typicode.com/todos/1");
 
-type Owner2 = keyof Vehicle;
+  const data = await response.json();
 
-const getPropertyValue = <X, Y extends keyof X>(obj: X, key: Y) => {
-  return obj[key];
+  return data;
 };
 
-const user = {
-  name: "x",
-  age: 33,
-  address: "uganda",
+getTodo();
+
+interface Something {
+  something: string;
+}
+
+const createPromise = (): Promise<Something> => {
+  return new Promise<Something>((resolve, reject) => {
+    const data: Something = { something: "something" };
+
+    if (data) {
+      resolve(data);
+    } else {
+      reject("failed to load data");
+    }
+  });
 };
 
-const car = {
-  model: "y",
-  year: 33,
+const showData = async (): Promise<Something> => {
+  const data: Something = await createPromise();
+  return data;
+  console.log(data);
 };
 
-const result1 = getPropertyValue(car, "year");
+showData();
