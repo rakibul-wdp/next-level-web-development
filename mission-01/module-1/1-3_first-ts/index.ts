@@ -1,37 +1,28 @@
-// constraints
+// generic constraint with keyof operator
 
-const addCourseToStudent = <
-  T extends { id: number; name: string; email: string }
->(
-  student: T
-) => {
-  const course = "level 2";
-
-  return {
-    ...student,
-    course,
-  };
-};
-
-interface Student {
-  id: number;
-  name: string;
-  email: string;
-  devType: string;
+interface Vehicle {
+  bike: string;
+  car: string;
+  ship: string;
 }
 
-const student1 = addCourseToStudent<Student>({
-  id: 22,
+type Owner = "bike" | "car" | "ship"; // manually
+
+type Owner2 = keyof Vehicle;
+
+const getPropertyValue = <X, Y extends keyof X>(obj: X, key: Y) => {
+  return obj[key];
+};
+
+const user = {
   name: "x",
-  email: "x@gmail.com",
-  devType: "l2",
-});
+  age: 33,
+  address: "uganda",
+};
 
-const student2 = addCourseToStudent({
-  id: 33,
-  name: "y",
-  email: "y@gmail.com",
-  hasWatch: "apple watch",
-});
+const car = {
+  model: "y",
+  year: 33,
+};
 
-const student3 = addCourseToStudent({ id: 2, name: "x", email: "x" });
+const result1 = getPropertyValue(car, "year");
