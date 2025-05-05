@@ -1,33 +1,19 @@
-// utility types
-// Pick
+// oop - class
 
-interface Person {
-  name: string;
-  age: number;
-  email?: string;
-  contactNo: string;
+class Animal {
+  // parameter properties
+
+  constructor(
+    public name: string,
+    public species: string,
+    public sound: string
+  ) {}
+
+  makeSound() {
+    console.log(this.name, this.sound);
+  }
 }
 
-type NameAge = Pick<Person, "name" | "age">;
-
-// Omit
-type ContactInfo = Omit<Person, "name" | "age">;
-
-// Required
-type PersonRequired = Required<Person>;
-
-// Partial
-type PersonPartial = Partial<Person>;
-
-// Readonly
-type PersonReadonly = Readonly<Person>;
-
-const person1: PersonReadonly = {
-  name: "x",
-  age: 23,
-  contactNo: "293849238",
-};
-
-type myObj = Record<string, number>;
-
-const EmptyObj: Record<string, unknown> = {};
+const dog = new Animal("german shepard", "dog", "ghew ghew");
+const cat = new Animal("asian cat", "cat", "mew mew");
+dog.makeSound();
