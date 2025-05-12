@@ -54,3 +54,11 @@ A series of guidelines that help to ensure that the design of a database is effi
   - Must not contain transitive dependency
 
 x -> y & y -> z => x -> z
+
+### Database Design
+
+- Top-down steps:
+  - Step 1: Determining Entities
+  - Step 2: Determining Attributes For Each Entities
+  - Step 3: Relationships Among Entities
+  - Step 4: Solving Many to Many
