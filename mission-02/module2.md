@@ -46,3 +46,11 @@ A series of guidelines that help to ensure that the design of a database is effi
 - Rules:
   - Must be in 1NF
   - Must not contain any non-prime/non-key attribute that is functionally dependent on a proper subset of any candidate key of the relation.
+
+##### 3NF
+
+- Rules:
+  - Must be in 2NF
+  - Must not contain transitive dependency
+
+x -> y & y -> z => x -> z
