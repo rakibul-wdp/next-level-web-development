@@ -21,3 +21,22 @@ Functional dependency in simple terms means that the value of one attribute (or 
 x -> y (x = determinant, y = dependant)
 t1.x = t2.x
 then, t1.y = t2.y
+
+#### Normal Forms
+
+A series of guidelines that help to ensure that the design of a database is efficient, organized, and free from data anomalies.
+
+- 0NF
+- 1NF
+- 2NF
+- 3NF
+
+##### 1NF
+
+- Rules
+  - Atomic Values
+  - Unique Column Names
+  - Positional dependency of data
+  - Column should contain data that are
+  - of the same type
+  - Determine Primary key
