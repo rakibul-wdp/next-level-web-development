@@ -81,3 +81,8 @@ Structured Query Language
 - Foreign Key
 - DEFAULT
 - CHECK
+
+#### Insert
+
+- Single-Row Insert:
+- Multi_Row Insert:
