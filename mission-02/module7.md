@@ -72,3 +72,12 @@ Structured Query Language
   - Serial:
     - Range: Like integers
     - Auto-incrementing integer
+
+#### Column Constraint
+
+- NOT NULL
+- UNIQUE
+- PRIMARY KEY
+- Foreign Key
+- DEFAULT
+- CHECK
