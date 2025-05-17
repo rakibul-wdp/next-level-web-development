@@ -80,7 +80,7 @@ Structured Query Language
 - PRIMARY KEY
 - Foreign Key
 - DEFAULT
-- CHECK
+- CHECKd
 
 #### Insert
 
