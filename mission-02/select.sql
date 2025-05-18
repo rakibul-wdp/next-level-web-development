@@ -147,3 +147,7 @@ DELETE FROM student
 
 DELETE FROM student
   WHERE grade = 'B' AND country = 'USA';
+
+UPDATE student
+  set email = 'default@gmail.com'
+  WHERE student_id = 14;
