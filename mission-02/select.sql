@@ -86,3 +86,64 @@ SELECT sum(age) FROM student;
 SELECT count(*) FROM student;
 
 SELECT max(length(first_name)) FROM student;
+
+SELECT * from student
+  WHERE NOT country = 'USA';
+
+SELECT NULL = NULL;
+
+SELECT * FROM student
+  WHERE email IS NOT NULL;
+
+SELECT COALESCE(email, 'hello') FROM student;
+
+SELECT COALESCE(email, 'not provided') as "Email", blood_group, first_name FROM student;
+
+SELECT * FROM student
+  WHERE country = 'USA' OR country = 'Canada' OR country = 'UK';
+
+SELECT * FROM student
+  WHERE country IN('USA', 'UK', 'Canada');
+SELECT * FROM student
+  WHERE country NOT IN('USA', 'UK', 'Canada');
+
+SELECT * FROM student
+  WHERE age BETWEEN 20 AND 22;
+
+SELECT * FROM student
+  WHERE dob BETWEEN '2000-01-01' AND '2001-12-25' ORDER BY dob;
+
+SELECT * FROM student
+  WHERE first_name LIKE '%am';
+
+SELECT * FROM student
+  WHERE first_name LIKE 'A%';
+
+SELECT * FROM student
+  WHERE first_name LIKE '__a%';
+
+SELECT * FROM student
+  WHERE first_name LIKE '___a';
+
+SELECT * FROM student
+  WHERE first_name ILIKE 'a%';
+
+SELECT * FROM student LIMIT 5;
+
+SELECT * FROM student
+  WHERE country IN('USA', 'UK', 'Canada') LIMIT 3;
+
+SELECT * FROM student LIMIT 5 OFFSET 5;
+
+SELECT * FROM student LIMIT 5 OFFSET 5 * 0;
+SELECT * FROM student LIMIT 5 OFFSET 5 * 1;
+SELECT * FROM student LIMIT 5 OFFSET 5 * 2;
+
+DELETE FROM student WHERE country = 'USA';
+SELECT * FROM student;
+
+DELETE FROM student
+  WHERE grade = 'B';
+
+DELETE FROM student
+  WHERE grade = 'B' AND country = 'USA';
