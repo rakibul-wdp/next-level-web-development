@@ -70,3 +70,19 @@ SELECT * FROM student
 
 SELECT * FROM student
   WHERE age <> 20;
+
+SELECT UPPER(first_name) as first_name_in_upper_case from student;
+
+SELECT concat(first_name, ' ', last_name) FROM student;
+
+SELECT length(first_name) FROM student;
+
+SELECT avg(age) from student;
+
+SELECT max(age) FROM student;
+
+SELECT sum(age) FROM student;
+
+SELECT count(*) FROM student;
+
+SELECT max(length(first_name)) FROM student;

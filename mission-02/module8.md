@@ -23,3 +23,10 @@ The SELECT statement is used to retrieve data from one or more tables and can be
 - DISTINCT
 - LIMIT
 - OFFSET
+
+### Functions
+
+1. Scalar
+   Scalar functions operate on a single value and return a single value. They perform an operation on each row's data independently.
+2. Aggregate
+   Aggregate functions operate on a set of values and return a single value summarizing that set. They perform an operation across multiple rows, often used with the GROUP BY clause.
