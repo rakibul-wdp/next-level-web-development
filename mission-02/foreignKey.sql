@@ -6,7 +6,7 @@ CREATE TABLE "user"(
 CREATE TABLE post(
   id SERIAL PRIMARY KEY,
   title TEXT NOT NULL,
-  user_id INTEGER REFERENCES "user"(id) ON DELETE SET DEFAULT DEFAULT 2
+  user_id INTEGER REFERENCES "user"(id)
 )
 
 ALTER TABLE post
@@ -41,3 +41,21 @@ INSERT INTO post (title, user_id) VALUES('test', NULL);
 
 DELETE FROM "user"
   WHERE id = 4;
+
+SELECT title, username FROM post
+  JOIN "user" on post.user_id = "user".id;
+
+SELECT * FROM post
+  JOIN "user" on post.user_id = "user".id;
+
+SELECT "user".id FROM post
+  JOIN "user" ON post.user_id = "user".id;
+
+SELECT p.id FROM post p
+  JOIN "user" ON p.user_id = "user".id;
+
+SELECT * FROM post p
+  JOIN "user" u ON p.user_id = u.id;
+
+SELECT * FROM post p
+  INNER JOIN "user" u ON p.user_id = u.id;
