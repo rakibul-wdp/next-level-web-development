@@ -15,6 +15,9 @@ INSERT INTO employees VALUES (2, 'John Smith', 102);
 INSERT INTO departments VALUES (101, 'Human Resources');
 INSERT INTO departments VALUES (102, 'Marketing');
 
+DROP TABLE employees;
+DROP TABLE departments;
+
 SELECT * FROM employees;
 SELECT * FROM departments;
 
