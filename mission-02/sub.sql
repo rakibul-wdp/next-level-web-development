@@ -50,3 +50,20 @@ SELECT * FROM employees WHERE salary > (SELECT max(salary) FROM employees WHERE 
 -- Can return a single value
 -- Can return multiple rows
 -- Can return a single column
+
+SELECT *, (SELECT sum(salary) FROM employees) FROM employees;
+SELECT sum(salary) FROM employees;
+
+SELECT department_name, sum(salary) FROM employees GROUP BY department_name;
+
+SELECT * FROM
+  (SELECT department_name, sum(salary) from employees GROUP BY department_name) as sum_dept_salary;
+
+SELECT * FROM employees
+  WHERE
+    (SELECT max(salary) FROM employees WHERE department_name = 'HR');
+
+SELECT employee_name, salary, department_name
+  FROM employees
+    WHERE department_name in
+      (SELECT department_name FROM employees WHERE department_name LIKE '%R%');
