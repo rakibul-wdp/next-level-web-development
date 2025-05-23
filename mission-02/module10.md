@@ -11,3 +11,7 @@ A subquery is a nested query within another SQL statement.
   1. Simplifying complex queries
   2. Improved security
   3. Enhanced data abstraction
+
+#### Indexing
+
+A database index is a strategically designed data structure that enhances the speed of data retrieval activities in a database table.
