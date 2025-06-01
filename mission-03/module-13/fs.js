@@ -1,9 +1,28 @@
 const fs = require("fs");
 
-const text = "learning file system";
+console.log("before");
 
-fs.writeFileSync("./hello.txt", text);
+let text = "hello world";
 
-const data = fs.readFileSync("./hello.txt", { encoding: "utf-8" });
+fs.writeFile("./hello.txt", text, { encoding: "utf-8" }, (err) => {
+  if (err) {
+    console.log("Something wrong", err);
+    return;
+  }
 
-console.log(data);
+  console.log("after writing ", data);
+});
+
+fs.readFile("./hello.txt", { encoding: "utf-8" }, (err, data) => {
+  if (err) {
+    console.log("Something went wrong", err);
+    return;
+  }
+
+  text = data;
+  console.log(text, "inside callback");
+});
+
+console.log(text);
+
+console.log("after");
