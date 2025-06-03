@@ -1,32 +1,39 @@
 const http = require("http");
+const path = require("path");
+const fs = require("fs");
 
-const data = [
-  {
-    title: "prisma",
-    body: "learning node",
-    createdAt: "5/18/2025, 1: 25:02 AM",
-  },
-  {
-    title: "typescript",
-    body: "learning node",
-    createdAt: "5/18/2025, 1: 25:12 AM",
-  },
-];
+const filePath = path.join(__dirname, "./db/todo.json");
 
 const server = http.createServer((req, res) => {
   if (req.url === "/todos" && req.method === "GET") {
+    const data = fs.readFileSync(filePath, { encoding: "utf-8" });
     res.writeHead(200, {
-      // "content-type": "application/json",
-      "content-type": "text/html",
-      // email: "abul@gmail.com",
+      "content-type": "application/json",
     });
-    // res.setHeader("content-type", "text/plain");
-    // res.setHeader("email", "babul@gmail.com");
-    // res.statusCode = 201;
-    // res.end(JSON.stringify(data));
-    res.end(`<h1>hello world</h1> <h4>from the other</h4> <del>awesome</del>`);
+
+    res.end(data);
   } else if (req.url === "/todos/create-todo" && req.method === "POST") {
-    res.end("Todo created");
+    let data = "";
+
+    req.on("data", (chunk) => {
+      data = data + chunk;
+    });
+
+    req.on("end", () => {
+      const { title, body } = JSON.parse(data);
+
+      const createdAt = new Date().toLocaleString();
+      const allTodos = fs.readFileSync(filePath, { encoding: "utf-8" });
+      const parsedAllTodos = JSON.parse(allTodos);
+
+      parsedAllTodos.push({ title, body, createdAt });
+
+      fs.writeFileSync(filePath, JSON.stringify(parsedAllTodos, null, 2), {
+        encoding: "utf-8",
+      });
+
+      res.end(JSON.stringify({ title, body, createdAt }, null, 2));
+    });
   } else {
     res.end("route not found");
   }
