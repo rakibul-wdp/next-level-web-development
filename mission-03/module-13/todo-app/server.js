@@ -84,6 +84,19 @@ const server = http.createServer((req, res) => {
         )
       );
     });
+  } else if (pathname === "/todos/delete-todo" && req.method === "DELETE") {
+    const title = url.searchParams.get("title");
+
+    const allTodos = fs.readFileSync(filePath, { encoding: "utf-8" });
+    const parsedAllTodos = JSON.parse(allTodos);
+
+    const updatedTodos = parsedAllTodos.filter((todo) => todo.title !== title);
+
+    fs.writeFileSync(filePath, JSON.stringify(updatedTodos, null, 2), {
+      encoding: "utf-8",
+    });
+
+    res.end("todo deleted");
   } else {
     res.end("route not found");
   }

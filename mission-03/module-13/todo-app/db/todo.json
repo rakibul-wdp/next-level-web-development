@@ -3,20 +3,5 @@
     "title": "prisma",
     "body": "learning node",
     "createdAt": "5/18/2025, 1: 25:02 AM"
-  },
-  {
-    "title": "typescript",
-    "body": "learning node",
-    "createdAt": "5/18/2025, 1: 25:12 AM"
-  },
-  {
-    "title": "express",
-    "body": "learning express",
-    "createdAt": "6/3/2025, 11:13:23 AM"
-  },
-  {
-    "title": "mongodb",
-    "body": "learning mongodb again",
-    "createdAt": "6/3/2025, 11:14:08 AM"
   }
 ]
