@@ -1,19 +1,16 @@
 import express, { Request, Response } from "express";
-import fs from "fs";
-import path from "path";
 import { client } from "../../config/mongodb";
 
 export const todosRouter = express.Router();
 
-const filePath = path.join(__dirname, "../../../db/todo.json");
+todosRouter.get("/", async (req: Request, res: Response) => {
+  const db = await client.db("todosDB");
+  const collection = await db.collection("todos");
 
-todosRouter.get("/", (req: Request, res: Response) => {
-  const data = fs.readFileSync(filePath, { encoding: "utf-8" });
+  const cursor = collection.find({});
+  const todos = await cursor.toArray();
 
-  res.json({
-    message: "from todos router",
-    data,
-  });
+  res.json(todos);
 });
 
 todosRouter.post("/create-todo", async (req: Request, res: Response) => {
