@@ -5,7 +5,20 @@ const app: Application = express();
 
 app.use(express.json());
 
+const todosRouter = express.Router();
+
 const filePath = path.join(__dirname, "../../db/todo.json");
+
+app.use("/", todosRouter);
+
+todosRouter.get("/todos", (req: Request, res: Response) => {
+  const data = fs.readFileSync(filePath, { encoding: "utf-8" });
+
+  res.json({
+    message: "from todos router",
+    data,
+  });
+});
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!!!");
