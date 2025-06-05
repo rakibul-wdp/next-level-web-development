@@ -43,11 +43,28 @@ todosRouter.get("/:id", async (req: Request, res: Response) => {
   res.json(todo);
 });
 
-todosRouter.put("/update-todo/:id", (req: Request, res: Response) => {
-  const { title, body } = req.body;
+todosRouter.put("/update-todo/:id", async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const { title, description, priority, isCompleted } = req.body;
 
-  console.log(title, body);
-  res.json({ title, body });
+  const db = await client.db("todosDB");
+  const collection = await db.collection("todos");
+  const updatedTodo = await collection.updateOne(
+    { _id: new ObjectId(id) },
+    {
+      $set: {
+        title: title,
+        description: description,
+        priority: priority,
+        isCompleted: isCompleted,
+      },
+    },
+    {
+      upsert: true,
+    }
+  );
+
+  res.json(updatedTodo);
 });
 
 todosRouter.delete("/delete-todo/:id", async (req: Request, res: Response) => {
