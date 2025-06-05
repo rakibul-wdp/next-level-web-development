@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
-import { client } from "../../config/mongodb";
 import { ObjectId } from "mongodb";
+import { client } from "../../config/mongodb";
 
 export const todosRouter = express.Router();
 
@@ -43,18 +43,24 @@ todosRouter.get("/:id", async (req: Request, res: Response) => {
   res.json(todo);
 });
 
-todosRouter.put("/update-todo/:title", (req: Request, res: Response) => {
+todosRouter.put("/update-todo/:id", (req: Request, res: Response) => {
   const { title, body } = req.body;
 
   console.log(title, body);
   res.json({ title, body });
 });
 
-todosRouter.delete("/delete-todo/:title", (req: Request, res: Response) => {
-  const { title, body } = req.body;
+todosRouter.delete("/delete-todo/:id", async (req: Request, res: Response) => {
+  const id = req.params.id;
 
-  console.log(title, body);
-  res.json({ title, body });
+  const db = await client.db("todosDB");
+  const collection = await db.collection("todos");
+
+  await collection.deleteOne({ _id: new ObjectId(id) });
+
+  res.json({
+    message: "Deleted",
+  });
 });
 
 /*

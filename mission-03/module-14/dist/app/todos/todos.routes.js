@@ -14,11 +14,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.todosRouter = void 0;
 const express_1 = __importDefault(require("express"));
-const mongodb_1 = require("../../config/mongodb");
-const mongodb_2 = require("mongodb");
+const mongodb_1 = require("mongodb");
+const mongodb_2 = require("../../config/mongodb");
 exports.todosRouter = express_1.default.Router();
 exports.todosRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const db = yield mongodb_1.client.db("todosDB");
+    const db = yield mongodb_2.client.db("todosDB");
     const collection = yield db.collection("todos");
     const cursor = collection.find({});
     const todos = yield cursor.toArray();
@@ -26,7 +26,7 @@ exports.todosRouter.get("/", (req, res) => __awaiter(void 0, void 0, void 0, fun
 }));
 exports.todosRouter.post("/create-todo", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { title, description, priority } = req.body;
-    const db = yield mongodb_1.client.db("todosDB");
+    const db = yield mongodb_2.client.db("todosDB");
     const collection = yield db.collection("todos");
     yield collection.insertOne({
         title: title,
@@ -40,21 +40,25 @@ exports.todosRouter.post("/create-todo", (req, res) => __awaiter(void 0, void 0,
 }));
 exports.todosRouter.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
-    const db = yield mongodb_1.client.db("todosDB");
+    const db = yield mongodb_2.client.db("todosDB");
     const collection = yield db.collection("todos");
-    const todo = yield collection.findOne({ _id: new mongodb_2.ObjectId(id) });
+    const todo = yield collection.findOne({ _id: new mongodb_1.ObjectId(id) });
     res.json(todo);
 }));
-exports.todosRouter.put("/update-todo/:title", (req, res) => {
+exports.todosRouter.put("/update-todo/:id", (req, res) => {
     const { title, body } = req.body;
     console.log(title, body);
     res.json({ title, body });
 });
-exports.todosRouter.delete("/delete-todo/:title", (req, res) => {
-    const { title, body } = req.body;
-    console.log(title, body);
-    res.json({ title, body });
-});
+exports.todosRouter.delete("/delete-todo/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const db = yield mongodb_2.client.db("todosDB");
+    const collection = yield db.collection("todos");
+    yield collection.deleteOne({ _id: new mongodb_1.ObjectId(id) });
+    res.json({
+        message: "Deleted",
+    });
+}));
 /*
 @todos
 title
