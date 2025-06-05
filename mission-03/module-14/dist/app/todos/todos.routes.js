@@ -36,3 +36,10 @@ exports.todosRouter.delete("/delete-todo/:title", (req, res) => {
     console.log(title, body);
     res.json({ title, body });
 });
+/*
+@todos
+title
+description
+priority: High, Medium, Low
+isCompleted: true
+*/
