@@ -3,6 +3,8 @@ import { model, Schema } from "mongoose";
 
 const app: Application = express();
 
+app.use(express.json());
+
 const noteSchema = new Schema({
   title: { type: String, required: true, trim: true },
   content: { type: String, default: "" },
@@ -23,20 +25,34 @@ const noteSchema = new Schema({
 
 const Note = model("Note", noteSchema);
 
-app.post("/create-note", async (req: Request, res: Response) => {
-  const myNote = new Note({
-    title: "Learning MongoDB",
-    tags: {
-      label: "database",
-    },
-  });
+app.post("/notes/create-note", async (req: Request, res: Response) => {
+  const body = req.body;
 
-  await myNote.save();
+  const note = await Note.create(body);
+
+  //   const myNote = new Note({
+  //     title: "Learning MongoDB",
+  //     tags: {
+  //       label: "database",
+  //     },
+  //   });
+
+  //   await myNote.save();
 
   res.status(201).json({
     success: true,
     message: "note created",
-    note: myNote,
+    note,
+  });
+});
+
+app.get("/notes", async (req: Request, res: Response) => {
+  const notes = await Note.find();
+
+  res.status(201).json({
+    success: true,
+    message: "note created",
+    notes,
   });
 });
 
