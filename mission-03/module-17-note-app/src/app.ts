@@ -56,6 +56,19 @@ app.get("/notes", async (req: Request, res: Response) => {
   });
 });
 
+app.get("/notes/:noteId", async (req: Request, res: Response) => {
+  const { noteId } = req.params;
+  //   const note = await Note.findById(noteId);
+  // const note = await Note.findOne({ _id: noteId });
+  const note = await Note.findOne({ title: "Learning angular" });
+
+  res.status(201).json({
+    success: true,
+    message: "note created",
+    note,
+  });
+});
+
 app.get("/", (req: Request, res: Response) => {
   res.send("welcome to note app");
 });
