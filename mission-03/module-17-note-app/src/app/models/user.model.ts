@@ -6,15 +6,25 @@ const userSchema = new Schema<IUser>({
     type: String,
     required: true,
     trim: true,
+    minlength: 5,
+    maxlength: 10,
   },
   lastName: {
     type: String,
     required: true,
     trim: true,
   },
+  age: {
+    type: Number,
+    required: true,
+    min: 18,
+    max: 60,
+  },
   email: {
     type: String,
+    unique: true,
     required: true,
+    lowercase: true,
     trim: true,
   },
   password: {
@@ -23,9 +33,10 @@ const userSchema = new Schema<IUser>({
   },
   role: {
     type: String,
-    enum: ["user", "admin"],
-    default: "user",
+    uppercase: true,
+    enum: ["USER", "ADMIN", "SUPERADMIN"],
+    default: "USER",
   },
 });
 
-export const User = model("User", userSchema);
+export const User = model<IUser>("User", userSchema);

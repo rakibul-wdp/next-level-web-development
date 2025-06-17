@@ -8,15 +8,6 @@ usersRoutes.post("/create-user", async (req: Request, res: Response) => {
 
   const user = await User.create(body);
 
-  //   const myNote = new Note({
-  //     title: "Learning MongoDB",
-  //     tags: {
-  //       label: "database",
-  //     },
-  //   });
-
-  //   await myUser.save();
-
   res.status(201).json({
     success: true,
     message: "user created",
@@ -36,13 +27,13 @@ usersRoutes.get("", async (req: Request, res: Response) => {
 
 usersRoutes.get("/:userId", async (req: Request, res: Response) => {
   const { userId } = req.params;
-  //   const note = await User.findById(userId);
+  const user = await User.findById(userId);
   // const note = await User.findOne({ _id: userId });
-  const user = await User.findOne({ title: "Learning angular" });
+  // const user = await User.findOne({ title: "Learning angular" });
 
   res.status(201).json({
     success: true,
-    message: "user created",
+    message: "user found",
     user,
   });
 });
