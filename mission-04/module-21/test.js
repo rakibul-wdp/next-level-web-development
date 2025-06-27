@@ -8,8 +8,6 @@ let total = 0;
 
 const addToTotal = (amount) => (total = total + amount);
 
-console.log(addToTotal(4));
-
 const updateDate = () => {
   new Date();
 };
@@ -17,3 +15,8 @@ const updateDate = () => {
 const randomNum = () => {
   return Math.random();
 };
+
+// currying / function curry
+const sum = (a) => (b) => a + b;
+
+console.log(sum(3)(5));
