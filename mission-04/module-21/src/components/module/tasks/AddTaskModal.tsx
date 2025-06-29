@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useAppDispatch } from "../../../redux/hook";
+import { addTask } from "../../../redux/features/task/taskSlice";
 
 interface AddTaskModalProps {
   onClose: () => void;
@@ -11,6 +13,8 @@ export default function AddTaskModal({ onClose }: AddTaskModalProps) {
     dueDate: "",
     priority: "medium",
   });
+
+  const dispatch = useAppDispatch();
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -27,6 +31,7 @@ export default function AddTaskModal({ onClose }: AddTaskModalProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted with data:", formData);
+    dispatch(addTask(formData));
     onClose();
   };
 
@@ -54,7 +59,6 @@ export default function AddTaskModal({ onClose }: AddTaskModalProps) {
 
       <h2 className="text-xl font-semibold text-gray-800 mb-4">Add New Task</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Rest of your form remains the same */}
         <div>
           <label
             htmlFor="title"
