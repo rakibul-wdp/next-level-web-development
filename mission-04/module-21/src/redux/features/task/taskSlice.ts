@@ -4,12 +4,12 @@ import type { RootState } from "../../store";
 
 interface InitialState {
   tasks: ITask[];
-  filter: "all" | "high" | "medium" | "low";
+  filter: "All" | "High" | "Medium" | "Low";
 }
 
 const initialState: InitialState = {
   tasks: [],
-  filter: "all",
+  filter: "All",
 };
 
 type DraftTask = Pick<ITask, "title" | "description" | "dueDate" | "priority">;
@@ -37,17 +37,34 @@ const taskSlice = createSlice({
     deleteTask: (state, action: PayloadAction<string>) => {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
     },
+    updateFilter: (
+      state,
+      action: PayloadAction<"All" | "Low" | "Medium" | "High">
+    ) => {
+      state.filter = action.payload;
+    },
   },
 });
 
 export const selectTasks = (state: RootState) => {
-  return state.todo.tasks;
+  const filter = state.todo.filter;
+
+  if (filter === "Low") {
+    return state.todo.tasks.filter((task) => task.priority === "Low");
+  } else if (filter === "Medium") {
+    return state.todo.tasks.filter((task) => task.priority === "Medium");
+  } else if (filter === "High") {
+    return state.todo.tasks.filter((task) => task.priority === "High");
+  } else {
+    return state.todo.tasks;
+  }
 };
 
 export const selectFilter = (state: RootState) => {
   return state.todo.filter;
 };
 
-export const { addTask, toggleCompleteState, deleteTask } = taskSlice.actions;
+export const { addTask, toggleCompleteState, deleteTask, updateFilter } =
+  taskSlice.actions;
 
 export default taskSlice.reducer;
