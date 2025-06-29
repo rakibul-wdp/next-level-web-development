@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAppDispatch } from "../../../redux/hook";
 import { addTask } from "../../../redux/features/task/taskSlice";
+import type { ITask } from "../../../types";
 
 interface AddTaskModalProps {
   onClose: () => void;
@@ -30,8 +31,7 @@ export default function AddTaskModal({ onClose }: AddTaskModalProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted with data:", formData);
-    dispatch(addTask(formData));
+    dispatch(addTask(formData as ITask));
     onClose();
   };
 
