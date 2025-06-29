@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 
-export default function AddTaskModal() {
+interface AddTaskModalProps {
+  onClose: () => void;
+}
+
+export default function AddTaskModal({ onClose }: AddTaskModalProps) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     dueDate: "",
-    priority: "medium", // default value
+    priority: "medium",
   });
 
   const handleChange = (
@@ -23,12 +27,34 @@ export default function AddTaskModal() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted with data:", formData);
+    onClose();
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-sm">
+    <div className="max-w-md w-full mx-auto p-6 bg-white rounded-lg shadow-lg relative">
+      <button
+        onClick={onClose}
+        className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+
       <h2 className="text-xl font-semibold text-gray-800 mb-4">Add New Task</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Rest of your form remains the same */}
         <div>
           <label
             htmlFor="title"
@@ -43,7 +69,7 @@ export default function AddTaskModal() {
             value={formData.title}
             onChange={handleChange}
             placeholder="Task title"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
           />
         </div>
 
@@ -61,7 +87,7 @@ export default function AddTaskModal() {
             onChange={handleChange}
             placeholder="Task description"
             rows={3}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
           ></textarea>
         </div>
 
@@ -78,7 +104,7 @@ export default function AddTaskModal() {
             id="dueDate"
             value={formData.dueDate}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
           />
         </div>
 
@@ -94,7 +120,7 @@ export default function AddTaskModal() {
             id="priority"
             value={formData.priority}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
           >
             <option value="high">High</option>
             <option value="medium">Medium</option>
