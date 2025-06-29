@@ -1,4 +1,7 @@
-import { toggleCompleteState } from "../../../redux/features/task/taskSlice";
+import {
+  deleteTask,
+  toggleCompleteState,
+} from "../../../redux/features/task/taskSlice";
 import { useAppDispatch } from "../../../redux/hook";
 import type { ITask } from "../../../types";
 
@@ -16,11 +19,12 @@ export default function TaskCard({ task }: IProps) {
         </h1>
 
         <div>
-          <button>Trash</button>
+          <button onClick={() => dispatch(deleteTask(task.id))}>Trash</button>
           <input
             type="checkbox"
             name=""
             id=""
+            checked={task.isCompleted}
             onClick={() => dispatch(toggleCompleteState(task.id))}
           />
         </div>
