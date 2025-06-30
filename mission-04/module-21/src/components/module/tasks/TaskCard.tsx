@@ -2,7 +2,8 @@ import {
   deleteTask,
   toggleCompleteState,
 } from "../../../redux/features/task/taskSlice";
-import { useAppDispatch } from "../../../redux/hook";
+import { selectUsers } from "../../../redux/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hook";
 import type { ITask } from "../../../types";
 
 interface IProps {
@@ -11,6 +12,9 @@ interface IProps {
 
 export default function TaskCard({ task }: IProps) {
   const dispatch = useAppDispatch();
+  const users = useAppSelector(selectUsers);
+
+  const assignedUser = users.find((user) => user.id === task.assignedTo);
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -29,6 +33,7 @@ export default function TaskCard({ task }: IProps) {
           />
         </div>
       </div>
+      <p>Assigned To - {assignedUser ? assignedUser.name : "No one"}</p>
       <p>{task.description}</p>
     </div>
   );

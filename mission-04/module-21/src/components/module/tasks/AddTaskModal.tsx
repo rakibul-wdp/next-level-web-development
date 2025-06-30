@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useAppDispatch } from "../../../redux/hook";
+import { useAppDispatch, useAppSelector } from "../../../redux/hook";
 import { addTask } from "../../../redux/features/task/taskSlice";
 import type { ITask } from "../../../types";
+import { selectUsers } from "../../../redux/features/user/userSlice";
 
 interface AddTaskModalProps {
   onClose: () => void;
@@ -16,6 +17,7 @@ export default function AddTaskModal({ onClose }: AddTaskModalProps) {
   });
 
   const dispatch = useAppDispatch();
+  const users = useAppSelector(selectUsers);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -129,6 +131,25 @@ export default function AddTaskModal({ onClose }: AddTaskModalProps) {
             <option value="High">High</option>
             <option value="Medium">Medium</option>
             <option value="Low">Low</option>
+          </select>
+        </div>
+
+        <div>
+          <label
+            htmlFor="priority"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
+            Assign To
+          </label>
+          <select
+            name="assignedTo"
+            value={formData.priority}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+          >
+            {users.map((user) => (
+              <option value={user.id}>{user.name}</option>
+            ))}
           </select>
         </div>
 
