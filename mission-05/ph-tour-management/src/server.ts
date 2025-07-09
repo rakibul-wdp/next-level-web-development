@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import { Server } from "http";
 import mongoose from "mongoose";
 import app from "./app";
+import { envVars } from "./app/config/env";
 
 let server: Server;
 
@@ -9,12 +10,12 @@ dotenv.config();
 
 const startServer = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URL as string);
+    await mongoose.connect(envVars.MONGODB_URL);
 
     console.log("connected to db");
 
-    server = app.listen(5000, () => {
-      console.log("server is listening to port 5000");
+    server = app.listen(envVars.PORT, () => {
+      console.log(`server is listening to port ${envVars.PORT}`);
     });
   } catch (error) {
     console.log(error);
