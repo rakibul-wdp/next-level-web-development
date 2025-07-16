@@ -12,6 +12,10 @@ const credentialsLogin = async (payload: Partial<IUser>) => {
   if (!ifUserExist) {
     throw new AppError(httpStatus.BAD_REQUEST, "User doesn't Exist");
   }
+  if (!ifUserExist.password) {
+    throw new AppError(httpStatus.BAD_REQUEST, "User password not set");
+  }
+
   const isPasswordMatched = await bcryptjs.compare(
     password as string,
     ifUserExist.password as string
