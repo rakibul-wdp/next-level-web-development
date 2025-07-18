@@ -2,9 +2,8 @@ import { Router } from "express";
 import { checkAuth } from "../../middlewares/checkAuth";
 import { validateRequest } from "../../middlewares/validateRequest";
 import { UserControllers } from "./user.controller";
-import { createUserZodSchema } from "./user.validation";
+import { createUserZodSchema, updateUserZodSchema } from "./user.validation";
 import { Role } from "./user.interface";
-import { AuthControllers } from "../auth/auth.controller";
 
 const router = Router();
 
@@ -23,6 +22,7 @@ router.get(
 
 router.patch(
   "/:id",
+  validateRequest(updateUserZodSchema),
   checkAuth(...Object.values(Role)),
   UserControllers.updateUser
 );
