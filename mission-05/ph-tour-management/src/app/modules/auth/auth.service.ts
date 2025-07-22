@@ -11,7 +11,11 @@ import {
 const credentialsLogin = async (payload: Partial<IUser>) => {
   const { email, password } = payload;
 
+  console.log("mail ", email);
+
   const isUserExist = await User.findOne({ email });
+
+  console.log(isUserExist);
 
   if (!isUserExist) {
     throw new AppError(httpStatus.BAD_REQUEST, "User doesn't Exist");
@@ -58,7 +62,9 @@ const credentialsLogin = async (payload: Partial<IUser>) => {
 };
 
 const getNewAccessToken = async (refreshToken: string) => {
-  const newAccessToken = createNewAccessTokenWithRefreshToken(refreshToken);
+  const newAccessToken = await createNewAccessTokenWithRefreshToken(
+    refreshToken
+  );
 
   return {
     accessToken: newAccessToken,
