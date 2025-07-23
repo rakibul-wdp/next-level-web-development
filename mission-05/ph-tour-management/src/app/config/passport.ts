@@ -31,11 +31,17 @@ passport.use(
           (providerObject) => providerObject.provider == "google"
         );
 
+        // if (isGoogleAuthenticated && !isUserExist.password) {
+        //   return done(null, false, {
+        //     message:
+        //       "You have authenticated through google, So if you want to login with to login with credentials, then at first login with google and set a password for your Gmail and then you can login with email and password.",
+        //   });
+        // }
+
         if (isGoogleAuthenticated) {
-          return done(null, false, {
-            message:
-              "You have authenticated through google, So if you want to login with to login with credentials, then at first login with google and set a password for your Gmail and then you can login with email and password.",
-          });
+          return done(
+            "You have authenticated through google, So if you want to login with to login with credentials, then at first login with google and set a password for your Gmail and then you can login with email and password."
+          );
         }
 
         const isPasswordMatched = await bcryptjs.compare(
