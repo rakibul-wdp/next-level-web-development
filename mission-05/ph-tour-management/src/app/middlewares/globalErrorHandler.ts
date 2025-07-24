@@ -8,6 +8,13 @@ export const globalErrorHandler = (
   res: Response,
   next: NextFunction
 ) => {
+  const errorSources: any = [
+    // {
+    //   path: "isDeleted",
+    //   message: "Cast Failed error",
+    // },
+  ];
+
   let statusCode = 500;
   let message = "something went wrong!";
 
@@ -29,6 +36,17 @@ export const globalErrorHandler = (
   else if (err.name === "CastError") {
     statusCode = 400;
     message = "Invalid MongoDB ObjectID. Please provide valid id";
+  } else if (err.name === "ValidationError") {
+    statusCode = 400;
+    const errors = Object.values(err.errors);
+
+    errors.forEach((errorObject: any) =>
+      errorSources.push({
+        path: errorObject.path,
+        message: errorObject.message,
+      })
+    );
+    message = "Validation error occurred";
   } else if (err instanceof AppError) {
     statusCode = err.statusCode;
     message = err.message;
@@ -40,7 +58,8 @@ export const globalErrorHandler = (
   res.status(statusCode).json({
     success: false,
     message,
-    err,
+    errorSources,
+    // err,
     stack: envVars.NODE_ENV === "development" ? err.stack : null,
   });
 };
